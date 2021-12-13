@@ -1,15 +1,17 @@
+const { X_RAPIDAPI_URL, X_RAPIDAPI_HOST, X_RAPIDAPI_KEY } = process.env;
+
 export const requestOptions = (cityName) => {
   return {
     method: "GET",
-    url: "https://community-open-weather-map.p.rapidapi.com/weather",
+    url: X_RAPIDAPI_URL,
     params: {
       q: `${cityName}`,
       lang: "en",
       units: "metric",
     },
     headers: {
-      "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-      "x-rapidapi-key": "db7ee5e803msh2d21f7b82050fe8p1ebaf1jsn61998401b62d",
+      "x-rapidapi-host": X_RAPIDAPI_HOST,
+      "x-rapidapi-key": X_RAPIDAPI_KEY,
     },
   };
 };
