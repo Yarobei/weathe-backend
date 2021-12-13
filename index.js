@@ -1,12 +1,11 @@
 import https from "https";
 import fs from "fs";
 import dotenv from "dotenv";
+import { app } from "./app.js";
 
 dotenv.config();
 
 const { PORT } = process.env;
-
-import { app } from "./app.js";
 
 const key = fs.readFileSync("./key.pem");
 const cert = fs.readFileSync("./cert.pem");
