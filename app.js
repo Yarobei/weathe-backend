@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import cors from "cors";
 import axios from "axios";
 
@@ -72,10 +72,14 @@ app.get("/weather", async (req, res) => {
       await axios
         .request(requestOptions(req.query.cityName))
         .then((response) => {
-          res.status(200).json(response.data);
+          if (response.status === 200) {
+            res.status(200).json(response.data);
+          } else {
+            res.status(response.status).json(response.data);
+          }
         })
         .catch((error) => {
-          console.error(error);
+          res.status(error.response.status).send(error.response.statusText);
         });
     } else {
       const isRefreshValid = await isRefreshValidHandle(refreshTokenFromCookie);
@@ -88,7 +92,7 @@ app.get("/weather", async (req, res) => {
             res.status(200).json(response.data);
           })
           .catch((error) => {
-            console.error(error);
+            res.status(error.response.status).send(error.response.statusText);
           });
       } else {
         res.status(401).send();
@@ -105,7 +109,7 @@ app.get("/weather", async (req, res) => {
           res.status(200).json(response.data);
         })
         .catch((error) => {
-          console.error(error);
+          res.status(error.response.status).send(error.response.statusText);
         });
     } else {
       res.status(401).send();
