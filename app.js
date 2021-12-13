@@ -52,7 +52,7 @@ app.get("/authorization", async (req, res) => {
       res.status(401).send();
     }
   } else {
-    res.status(401).send("not authorized");
+    res.status(401).send();
   }
 });
 
@@ -75,7 +75,6 @@ app.get("/weather", async (req, res) => {
           res.status(200).json(response.data);
         })
         .catch(function (error) {
-          debugger;
           console.error(error);
         });
     } else {
@@ -84,7 +83,6 @@ app.get("/weather", async (req, res) => {
         await axios
           .request(requestOptions(req.query.cityName))
           .then(function (response) {
-            debugger;
             res.cookie("weather_access", token, accessTokenOptions);
             res.cookie("weather_refresh", refreshToken, refreshTokenOptions);
             res.status(200).json(response.data);
@@ -102,7 +100,6 @@ app.get("/weather", async (req, res) => {
       await axios
         .request(requestOptions(req.query.cityName))
         .then(function (response) {
-          debugger;
           res.cookie("weather_access", token, accessTokenOptions);
           res.cookie("weather_refresh", refreshToken, refreshTokenOptions);
           res.status(200).json(response.data);
