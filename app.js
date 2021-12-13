@@ -71,10 +71,10 @@ app.get("/weather", async (req, res) => {
     if (isAccessValid) {
       await axios
         .request(requestOptions(req.query.cityName))
-        .then(function (response) {
+        .then((response) => {
           res.status(200).json(response.data);
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.error(error);
         });
     } else {
@@ -82,12 +82,12 @@ app.get("/weather", async (req, res) => {
       if (isRefreshValid) {
         await axios
           .request(requestOptions(req.query.cityName))
-          .then(function (response) {
+          .then((response) => {
             res.cookie("weather_access", token, accessTokenOptions);
             res.cookie("weather_refresh", refreshToken, refreshTokenOptions);
             res.status(200).json(response.data);
           })
-          .catch(function (error) {
+          .catch((error) => {
             console.error(error);
           });
       } else {
@@ -99,12 +99,12 @@ app.get("/weather", async (req, res) => {
     if (isRefreshValid) {
       await axios
         .request(requestOptions(req.query.cityName))
-        .then(function (response) {
+        .then((response) => {
           res.cookie("weather_access", token, accessTokenOptions);
           res.cookie("weather_refresh", refreshToken, refreshTokenOptions);
           res.status(200).json(response.data);
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.error(error);
         });
     } else {
