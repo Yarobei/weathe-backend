@@ -1,7 +1,7 @@
 import config from "config";
 
-const openWeatherMapUrl = config.get("rapidApi.openWeatherMapUrl");
-const openWeatherMapKey = config.get("rapidApi.openWeatherMapKey");
+const openWeatherMapUrl = config.get("openWeatherMapApi.openWeatherMapUrl");
+const openWeatherMapKey = config.get("openWeatherMapApi.openWeatherMapKey");
 
 export const requestOptions = (cityName) => {
   return {
