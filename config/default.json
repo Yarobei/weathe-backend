@@ -1,0 +1,32 @@
+{
+  "server": {
+    "port": 4000,
+    "corsOrigin": "https://localhost:3000"
+  },
+  "token": {
+    "tokenKeyAccess": "WEATHER_USER_ACCESS",
+    "tokenKeyRefresh": "WEATHER_USER_REFRESH",
+    "accessTokenOptions": {
+      "httpOnly": true,
+      "maxAge": 300000,
+      "sameSite": "none",
+      "domain": "localhost",
+      "secure": true
+    },
+    "refreshTokenOptions": {
+      "httpOnly": true,
+      "maxAge": 2592000000,
+      "sameSite": "none",
+      "domain": "localhost",
+      "secure": true
+    }
+  },
+  "rapidApi": {
+    "openWeatherMapUrl": "https://api.openweathermap.org/data/2.5/weather",
+    "openWeatherMapKey": "2010e9fcf475a3ee72bf91caac477b9d"
+  },
+  "dbConfig": {
+    "mongoUri": "mongodb+srv://dmitry:yJhqJgHG8iVreKWSqjTtAnhXDpAc3G@weather.s28j9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "saltRounds": 10
+  }
+}
