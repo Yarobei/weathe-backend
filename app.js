@@ -7,11 +7,14 @@ import config from "config";
 import { AuthorizationController } from "./controllers/authorization.controller.js";
 import { WeatherController } from "./controllers/weather.controller.js";
 
-import { checkToken } from "./middleware/token.middleware.js";
+import { ensureAuthorized } from "./middleware/token.middleware.js";
+import { connectToDB } from "./config/database.js";
 
 const corsOrigin = config.get("server.corsOrigin");
 
 const app = express();
+
+connectToDB();
 
 app.use(helmet());
 app.use(

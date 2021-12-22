@@ -3,7 +3,7 @@ import config from "config";
 
 const mongoUri = config.get("dbConfig.mongoUri");
 
-export const connect = () => {
+export const connectToDB = () => {
   mongoose
     .connect(mongoUri, {
       useNewUrlParser: true,
