@@ -6,17 +6,11 @@ import { connect } from "../config/database.js";
 
 const tokenKeyAccess = config.get("token.tokenKeyAccess");
 const tokenKeyRefresh = config.get("token.tokenKeyRefresh");
+const tokenAccessOptions = config.get("token.tokenAccessOptions");
+const tokenRefreshOptions = config.get("token.tokenRefreshOptions");
 
-connect();
+export const generateAccessToken = (user_id) =>
+  jwt.sign({ user_id }, tokenKeyAccess, tokenAccessOptions);
 
-const user = await User.findOne({ id: "61b33711da2eb61149cb521b" });
-
-export const token = () =>
-  jwt.sign({ user_id: user._id }, tokenKeyAccess, {
-    expiresIn: "5m",
-  });
-
-export const refreshToken = () =>
-  jwt.sign({ user_id: user._id }, tokenKeyRefresh, {
-    expiresIn: "30d",
-  });
+export const generateRefreshToken = (user_id) =>
+  jwt.sign({ user_id }, tokenKeyRefresh, tokenRefreshOptions);
