@@ -1,21 +1,26 @@
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
+import bodyParser from "body-parser";
+import config from "config";
 
 import { AuthorizationController } from "./controllers/authorization.controller.js";
-
-import { checkToken } from "./middleware/token.middleware.js";
 import { WeatherController } from "./controllers/weather.controller.js";
 
-const { CORS_ORIGIN } = process.env;
+import { checkToken } from "./middleware/token.middleware.js";
+
+const corsOrigin = config.get("server.corsOrigin");
 
 const app = express();
 
+app.use(helmet());
 app.use(
   cors({
     credentials: true,
-    origin: CORS_ORIGIN,
+    origin: corsOrigin,
   }),
 );
+app.use(bodyParser.json());
 
 app.get("/authorization", checkToken, AuthorizationController.authCheck);
 
