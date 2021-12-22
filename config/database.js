@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+import config from "config";
 
-dotenv.config();
-const { MONGO_URI } = process.env;
+const mongoUri = config.get("dbConfig.mongoUri");
 
 export const connect = () => {
   mongoose
-    .connect(MONGO_URI, {
+    .connect(mongoUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
