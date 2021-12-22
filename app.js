@@ -26,6 +26,8 @@ app.get("/authorization", checkToken, AuthorizationController.authCheck);
 
 app.post("/login", AuthorizationController.login);
 
+app.get("/logout", AuthorizationController.logout);
+
 app.get("/weather", checkToken, WeatherController.getWeather);
 
 export { app };
