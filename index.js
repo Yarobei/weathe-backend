@@ -1,17 +1,16 @@
 import https from "https";
 import fs from "fs";
-import dotenv from "dotenv";
+import config from "config";
+
 import { app } from "./app.js";
 
-dotenv.config();
-
-const { PORT } = process.env;
+const port = config.get("server.port");
 
 const key = fs.readFileSync("./key.pem");
 const cert = fs.readFileSync("./cert.pem");
 
 const server = https.createServer({ key: key, cert: cert }, app);
 
-server.listen(PORT || 3000, () => {
-  console.log("Server is running");
+server.listen(port || 3000, () => {
+  console.log("Server is running on port: ", port);
 });
