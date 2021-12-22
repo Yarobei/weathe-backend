@@ -1,6 +1,6 @@
 #Weather App API
 
-Api(proxy) for weather app (data is fetching from [https://api.openweathermap.org/data/2.5/weather](https://api.openweathermap.org/data/2.5/weather)) with authorization based on JWT.
+Api(proxy) for weather app (data is fetching from [https://api.openweathermap.org/data/2.5/weather](https://api.openweathermap.org/data/2.5/weather)) with authorization based on JWT, built with Node.js, Express, MongoDB.
 
 
 ###Description
