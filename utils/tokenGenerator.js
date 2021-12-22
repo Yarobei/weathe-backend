@@ -1,9 +1,6 @@
 import jwt from "jsonwebtoken";
 import config from "config";
 
-import { User } from "../model/user.js";
-import { connect } from "../config/database.js";
-
 const tokenKeyAccess = config.get("token.tokenKeyAccess");
 const tokenKeyRefresh = config.get("token.tokenKeyRefresh");
 const tokenAccessOptions = config.get("token.tokenAccessOptions");
