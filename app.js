@@ -25,12 +25,12 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.get("/authorization", checkToken, AuthorizationController.authCheck);
+app.get("/authorization", ensureAuthorized, AuthorizationController.authCheck);
 
 app.post("/login", AuthorizationController.login);
 
 app.get("/logout", AuthorizationController.logout);
 
-app.get("/weather", checkToken, WeatherController.getWeather);
+app.get("/weather", ensureAuthorized, WeatherController.getWeatherForCity);
 
 export { app };
