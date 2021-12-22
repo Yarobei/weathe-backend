@@ -15,9 +15,28 @@ export class AuthorizationController {
     res.status(200).send();
   }
 
+  static async logout(req, res) {
+    res.cookie(weatherAccessCookie, "", { maxAge: 0 });
+    res.cookie(weatherRefreshCookie, "", { maxAge: 0 });
+    res.status(200).send();
+  }
+
   static async login(req, res) {
-    res.cookie("weather_access", token, accessTokenOptions);
-    res.cookie("weather_refresh", refreshToken, refreshTokenOptions);
-    res.status(200).json({ signedIn: true });
+    const { username, password } = req.body;
+
+    User.findOne({ username }).then((user) => {
+      if (!user) {
+        res.status(404).json({ message: "User doesn't exist" });
+      } else {
+        const isPasswordValid = compareHashes(password, user.password);
+        if (isPasswordValid) {
+          res.cookie(weatherAccessCookie, token(), accessTokenOptions);
+          res.cookie(weatherRefreshCookie, refreshToken(), refreshTokenOptions);
+          res.status(200).send();
+        } else {
+          res.status(403).json({ message: "Invalid password" });
+        }
+      }
+    });
   }
 }
