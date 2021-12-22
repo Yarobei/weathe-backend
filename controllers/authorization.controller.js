@@ -1,8 +1,14 @@
+import config from "config";
+
 import { refreshToken, token } from "../utils/tokenGenerator.js";
-import {
-  accessTokenOptions,
-  refreshTokenOptions,
-} from "../constants/constants.js";
+import { compareHashes } from "../utils/compareHashes.js";
+
+import { User } from "../model/user.js";
+
+const accessTokenOptions = config.get("token.accessTokenOptions");
+const refreshTokenOptions = config.get("token.refreshTokenOptions");
+const weatherAccessCookie = config.get("cookie.weatherAccessCookie");
+const weatherRefreshCookie = config.get("cookie.weatherRefreshCookie");
 
 export class AuthorizationController {
   static async authCheck(req, res) {
