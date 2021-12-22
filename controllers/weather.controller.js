@@ -7,7 +7,7 @@ export class WeatherController {
     await axios
       .request(requestOptions(req.query.cityName))
       .then((response) => {
-        if (response.status === 200) {
+        if (response.ok) {
           res.status(200).json(response.data);
         } else {
           res.status(response.status).json(response.data);
