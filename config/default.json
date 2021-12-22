@@ -3,6 +3,10 @@
     "port": 4000,
     "corsOrigin": "https://localhost:3000"
   },
+  "cookie": {
+    "weatherAccessCookie": "weather_access",
+    "weatherRefreshCookie": "weather_refresh"
+  },
   "token": {
     "tokenKeyAccess": "WEATHER_USER_ACCESS",
     "tokenKeyRefresh": "WEATHER_USER_REFRESH",
