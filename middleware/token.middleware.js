@@ -1,6 +1,6 @@
 import config from "config";
 
-import { checkCookie } from "../utils/checkCookie.js";
+import { parseCookie } from "../utils/parseCookie.js";
 import {
   isAccessValidHandle,
   isRefreshValidHandle,
@@ -14,7 +14,7 @@ const weatherRefreshCookie = config.get("cookie.weatherRefreshCookie");
 
 export const checkToken = async (req, res, next) => {
   try {
-    const [accessTokenFromCookie, refreshTokenFromCookie] = checkCookie(
+    const [accessTokenFromCookie, refreshTokenFromCookie] = parseCookie(
       req.headers["cookie"],
     );
     if (!accessTokenFromCookie && !refreshTokenFromCookie) {

@@ -3,7 +3,7 @@ import config from "config";
 const weatherAccessCookie = config.get("cookie.weatherAccessCookie");
 const weatherRefreshCookie = config.get("cookie.weatherRefreshCookie");
 
-export const checkCookie = (cookie) => {
+export const parseCookie = (cookie) => {
   const cookieArr = cookie?.split("; ");
   const accessTokenFromCookie = cookieArr
     ?.find((item) => item.split("=")[0] === weatherAccessCookie)
