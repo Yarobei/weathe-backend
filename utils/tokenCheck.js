@@ -1,22 +1,17 @@
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+import config from "config";
 
-dotenv.config();
-
-const { TOKEN_KEY_ACCESS, TOKEN_KEY_REFRESH } = process.env;
+const tokenKeyAccess = config.get("token.tokenKeyAccess");
+const tokenKeyRefresh = config.get("token.tokenKeyRefresh");
 
 export const isAccessValidHandle = async (accessTokenFromCookie) => {
-  return await jwt.verify(
-    accessTokenFromCookie,
-    TOKEN_KEY_ACCESS,
-    (err) => !err,
-  );
+  return await jwt.verify(accessTokenFromCookie, tokenKeyAccess, (err) => !err);
 };
 
 export const isRefreshValidHandle = async (refreshTokenFromCookie) => {
   return await jwt.verify(
     refreshTokenFromCookie,
-    TOKEN_KEY_REFRESH,
+    tokenKeyRefresh,
     (err) => !err,
   );
 };

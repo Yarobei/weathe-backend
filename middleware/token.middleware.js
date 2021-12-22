@@ -1,13 +1,16 @@
+import config from "config";
+
 import { checkCookie } from "../utils/checkCookie.js";
 import {
   isAccessValidHandle,
   isRefreshValidHandle,
 } from "../utils/tokenCheck.js";
 import { refreshToken, token } from "../utils/tokenGenerator.js";
-import {
-  accessTokenOptions,
-  refreshTokenOptions,
-} from "../constants/constants.js";
+
+const accessTokenOptions = config.get("token.accessTokenOptions");
+const refreshTokenOptions = config.get("token.refreshTokenOptions");
+const weatherAccessCookie = config.get("cookie.weatherAccessCookie");
+const weatherRefreshCookie = config.get("cookie.weatherRefreshCookie");
 
 export const checkToken = async (req, res, next) => {
   try {
@@ -21,8 +24,8 @@ export const checkToken = async (req, res, next) => {
     if (!isAccessValid) {
       const isRefreshValid = await isRefreshValidHandle(refreshTokenFromCookie);
       if (isRefreshValid) {
-        res.cookie("weather_access", token, accessTokenOptions);
-        res.cookie("weather_refresh", refreshToken, refreshTokenOptions);
+        res.cookie(weatherAccessCookie, token(), accessTokenOptions);
+        res.cookie(weatherRefreshCookie, refreshToken(), refreshTokenOptions);
         next();
       } else {
         res.status(401).send();
@@ -31,7 +34,6 @@ export const checkToken = async (req, res, next) => {
       next();
     }
   } catch (error) {
-    console.log("Error:" + error);
     res.status(401).send();
   }
 };
