@@ -11,6 +11,6 @@ const cert = fs.readFileSync("./cert.pem");
 
 const server = https.createServer({ key: key, cert: cert }, app);
 
-server.listen(port || 3000, () => {
+server.listen(port || 4000, () => {
   console.log("Server is running on port: ", port);
 });
