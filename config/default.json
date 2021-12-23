@@ -1,0 +1,42 @@
+{
+  "server": {
+    "port": 4000,
+    "corsOrigin": "https://localhost:3000"
+  },
+  "cookie": {
+    "weatherAccessCookie": "weather_access",
+    "weatherRefreshCookie": "weather_refresh",
+    "accessCookieOptions": {
+      "httpOnly": true,
+      "maxAge": 300000,
+      "sameSite": "none",
+      "domain": "localhost",
+      "secure": true
+    },
+    "refreshCookieOptions": {
+      "httpOnly": true,
+      "maxAge": 2592000000,
+      "sameSite": "none",
+      "domain": "localhost",
+      "secure": true
+    }
+  },
+  "token": {
+    "tokenKeyAccess": "WEATHER_USER_ACCESS",
+    "tokenKeyRefresh": "WEATHER_USER_REFRESH",
+    "tokenAccessOptions": {
+      "expiresIn": "5m"
+    },
+    "tokenRefreshOptions": {
+      "expiresIn": "30d"
+    }
+  },
+  "openWeatherMapApi": {
+    "openWeatherMapUrl": "https://api.openweathermap.org/data/2.5/weather",
+    "openWeatherMapKey": "2010e9fcf475a3ee72bf91caac477b9d"
+  },
+  "dbConfig": {
+    "mongoUri": "mongodb+srv://dmitry:yJhqJgHG8iVreKWSqjTtAnhXDpAc3G@weather.s28j9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "saltRounds": 10
+  }
+}
